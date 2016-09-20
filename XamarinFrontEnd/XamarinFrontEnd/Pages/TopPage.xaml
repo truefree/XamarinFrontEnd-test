@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinFrontEnd.Pages.TopPage">
+  <ContentPage.Padding>
+    <OnPlatform x:TypeArguments="Thickness" iOS="0,40,0,0" Android="0,20,0,0" WinPhone="0,20,0,0"/>
+  </ContentPage.Padding>
+  
+  <ContentPage.Content>
+    <Grid Padding="0" BackgroundColor="#ffffff">
+      <!--그리드 뷰 3x1-->
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="40"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="80"/>
+      </Grid.RowDefinitions>
+
+      <!-- 로그인 체크 하는 빨간선 -->
+      <BoxView HeightRequest="40" Grid.Row="0" Grid.Column="0" BackgroundColor="#ea002c"/>
+  
+      <!--로그인 창은 Stack Layout-->
+      <StackLayout Grid.Row="1" Grid.Column="0" 
+                   Orientation="Vertical" Spacing="10" 
+                   VerticalOptions="FillAndExpand" 
+        HorizontalOptions="FillAndExpand" 
+        HeightRequest="150"  
+        BackgroundColor="#ffffff" >
+        <BoxView HeightRequest="80" BackgroundColor="#ffffff"/>
+        <Image 
+          Opacity="1"
+          Source="logo.png"
+          Aspect="AspectFit" Scale="1" HeightRequest="101" WidthRequest="120"/>
+    </StackLayout>
+      
+      <!--하단 버튼 그리드 뷰 1x3-->
+      <Grid Grid.Column="0" Grid.Row="2" BackgroundColor="#ff7a00">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>  
+          <Button Grid.Row="0" Grid.Column="0"
+                x:Name="btnRegister" Text="Sign Up" FontSize="20" TextColor="#ffffff"
+                BackgroundColor="Transparent"
+        VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180"/>
+          <BoxView Grid.Row="0" Grid.Column="1" WidthRequest="1" BackgroundColor="#ffffff"/>
+          <Button Grid.Row="0" Grid.Column="2"
+                x:Name="btnLogin" Text="Login" FontSize="20" TextColor="#FFFFFF"
+                BackgroundColor="Transparent"
+        VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180"/>
+        </Grid>
+    </Grid>
+  </ContentPage.Content>
+</ContentPage>

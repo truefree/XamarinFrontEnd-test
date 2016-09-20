@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinFrontEnd.Page1">
+  <StackLayout Padding="10,40,10,10">
+    <Label Text="{Binding Path=MainText}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#000000" IsVisible="true" />
+    <Button Text="{Binding MainText}"></Button>
+  </StackLayout>
+
+</ContentPage>

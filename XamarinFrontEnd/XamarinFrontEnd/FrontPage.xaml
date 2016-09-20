@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinFrontEnd.FrontPage">
+  <ContentPage.Content>
+    <Grid>
+      <Image Opacity="1"
+        Source="image_bg.png"
+        Aspect="AspectFill"/>
+
+      <StackLayout Orientation="Horizontal" Spacing="0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" HeightRequest="150"  BackgroundColor="#77000000" >
+
+        <Image WidthRequest="80"
+          Opacity="0.8"
+          Source="image_hero_bw.png"
+          Aspect="AspectFill" Scale="1" />
+
+        <BoxView BackgroundColor="#f50057" WidthRequest="5"></BoxView>
+        <Grid HorizontalOptions="Start"  Padding="20"  VerticalOptions="Center"  >
+          <Label TextColor="White" Text="음성 인식 로그인"
+          FontAttributes="Bold" FontSize="30" />
+          <Button Text="사용자 등록" TextColor="White" BackgroundColor="#f50057" HeightRequest="40" VerticalOptions="End" Clicked="OnRegClicked"></Button>
+        </Grid>
+
+      </StackLayout>
+
+      <StackLayout Padding="20" VerticalOptions="End" Spacing="10">
+
+        <Button Text="로그인" TextColor="White" BackgroundColor="#f50057" HeightRequest="40" VerticalOptions="End" Clicked="OnLoginClicked"></Button>
+        <Label Text="Just for Fun!" HorizontalTextAlignment="Center" FontSize="12" TextColor="White"></Label>
+      </StackLayout>
+    </Grid>
+  </ContentPage.Content>
+</ContentPage>
