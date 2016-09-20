@@ -17,7 +17,7 @@ namespace XamarinFrontEnd
 
         void OnLoginClicked(object sender, EventArgs evt)
         {
-            Navigation.PushAsync(new Page1());
+            //Navigation.PushAsync(new Page1());
         }
 
         void OnRegClicked(object sender, EventArgs evt)
