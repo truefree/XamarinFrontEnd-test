@@ -22,7 +22,7 @@ namespace XamarinFrontEnd
 
         void OnRegClicked(object sender, EventArgs evt)
         {
-            Navigation.PushAsync(new Registration());
+            Navigation.PushAsync(new Pages.Registration());
         }
     }
 }
