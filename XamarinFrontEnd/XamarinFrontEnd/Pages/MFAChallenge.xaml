@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamarinFrontEnd.Pages.Registration">
+             x:Class="XamarinFrontEnd.Pages.MFAChallenge">
   <ContentPage.Padding>
     <OnPlatform x:TypeArguments="Thickness" iOS="0,40,0,0" Android="0,20,0,0" WinPhone="0,20,0,0"/>
   </ContentPage.Padding>
@@ -37,8 +37,8 @@
           Aspect="AspectFit" Scale="1" HeightRequest="101" WidthRequest="120"/>
         <BoxView HeightRequest="40" BackgroundColor="#ffffff"/>
         <StackLayout HorizontalOptions="Center">
-          <Label Text="Email Address" TextColor="#3366bb"/>
-          <Entry x:Name="txtID" WidthRequest="250" PlaceholderColor="#aaaaaa" Placeholder="alias@sk.com"/>
+          <Label Text="본인 인증" TextColor="#3366bb"/>
+          <Entry x:Name="txtID" WidthRequest="250" Keyboard="Numeric" PlaceholderColor="#aaaaaa" Placeholder="SMS로 받은 숫자를 입력하세요"/>
         </StackLayout>
 
       </StackLayout>
@@ -49,11 +49,12 @@
           <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Button Grid.Row="0" Grid.Column="0"
-              x:Name="btnSubmit" Text="Sign Up" FontSize="20" TextColor="#ffffff"
+              x:Name="btnSubmit" Text="Submit" FontSize="20" TextColor="#ffffff"
               BackgroundColor="Transparent"
       VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180"
                 Clicked="OnBtnSubmitClicked"/>
       </Grid>
     </Grid>
   </ContentPage.Content>
+  
 </ContentPage>
