@@ -31,8 +31,6 @@ namespace XamarinFrontEnd.Pages
 
         public async void OnBtnRegisterClicked(object sender, EventArgs evt)
         {
-            //Navigation.PushAsync(new Pages.Registration());
-            //this.btnRegister.IsEnabled = false;
             this.IsEnabled = false;
             await this.FadeTo(0.5);
 
@@ -82,14 +80,13 @@ namespace XamarinFrontEnd.Pages
                             {
                                 // internal ID 저장하고 Input Page로
                                 Helpers.Settings.InternalID = Helpers.Parser.ParseGuidToString(response.Headers.Location.ToString());
-                                await DisplayAlert("SMS 확인", "휴대폰에 수신된 6자리 숫자를 입력하세요", "OK");
+                                await Navigation.PushAsync(new Pages.MFAChallenge());
                             }
                             else
                             {
                                 // 이미 있음
                                 Helpers.Settings.InternalID = Helpers.Parser.ParseGuidToString(response.Headers.Location.ToString());
                                 await DisplayAlert("Already Existed", "이미 등록된 계정 입니다.", "OK");
-                                await Navigation.PushAsync(new Pages.MFAChallenge());
                             }
                         }
                         else
@@ -111,9 +108,65 @@ namespace XamarinFrontEnd.Pages
             }
         }
 
-        void OnBtnLoginClicked(object sender, EventArgs evt)
+        async void OnBtnLoginClicked(object sender, EventArgs evt)
         {
-            //Navigation.PushAsync(new Pages.Registration());
+            this.IsEnabled = false;
+            await this.FadeTo(0.5);
+
+            string loginID = this.txtID.Text;
+            if(string.IsNullOrEmpty(loginID)
+                || Helpers.Parser.IsEmailString(loginID) == false)
+            {
+                await DisplayAlert("메일 주소 필요", "Email Address에 사용 중인 @sk.com / @partner.sk.com 메일 주소를 입력하세요.", "OK");
+                await this.FadeTo(1);
+                this.IsEnabled = true;
+            }
+            else
+            {
+
+                loginID = loginID.Trim();
+                Helpers.Settings.UserEmail = loginID;
+
+                try
+                {
+                    HttpClientHandler c = new HttpClientHandler();
+                    c.AllowAutoRedirect = false;
+                    var client = new HttpClient(c, true);
+
+                    HttpResponseMessage response;
+                    //System.Net.HttpWebResponse n = new System.Net.HttpWebResponse();
+                    //n.
+                    response = await client.GetAsync("http://localhost:5841/api/users/" + loginID);
+
+                    if(response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                    {
+                        await DisplayAlert("미등록 사용자", "Registarion 먼저 하세요.", "OK");
+                    }
+                    else if(response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        string res = string.Empty;
+                        res = await response.Content.ReadAsStringAsync();
+                        UserModel u = JsonConvert.DeserializeObject<UserModel>(res);
+                        if (u.IsEnrolled == false || u.IsEnrollCompleted == false)
+                        {
+                            // 아직 완료 안된 놈들..
+                            // enroll page로!
+                        } else
+                        {
+                            // 완료되었으니 login page로!
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                    await DisplayAlert("Server Error", "통신 오류 입니다. 잠시 후 다시 시도해주세요.", "OK");
+                }
+                finally
+                {
+                    await this.FadeTo(1);
+                    this.IsEnabled = true;
+                }
+            }
         }
 
     }

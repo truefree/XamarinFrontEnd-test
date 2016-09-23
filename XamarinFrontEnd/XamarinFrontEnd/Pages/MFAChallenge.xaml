@@ -38,7 +38,12 @@
         <BoxView HeightRequest="40" BackgroundColor="#ffffff"/>
         <StackLayout HorizontalOptions="Center">
           <Label Text="본인 인증" TextColor="#3366bb"/>
-          <Entry x:Name="txtID" WidthRequest="250" Keyboard="Numeric" PlaceholderColor="#aaaaaa" Placeholder="SMS로 받은 숫자를 입력하세요"/>
+          <Entry x:Name="txtID" WidthRequest="250" Keyboard="Numeric" PlaceholderColor="#aaaaaa" Placeholder="SMS로 받은 숫자를 입력하세요" />
+          <Label x:Name="lblTimer" Text="{Binding RemainSeconds, StringFormat='유효 시간 : {0} 초'}" HorizontalOptions="End"/>
+          <BoxView HeightRequest="20" BackgroundColor="Transparent"/>
+          
+          <Button x:Name="btnRequest" Text="인증 번호 재요청" FontSize="15" TextColor="#3366bb" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center"
+                  Clicked="OnBtnRequestClicked"/>
         </StackLayout>
 
       </StackLayout>

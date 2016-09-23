@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamarinFrontEnd.Pages.Registration">
+             x:Class="XamarinFrontEnd.Pages.Enroll">
   <ContentPage.Padding>
     <OnPlatform x:TypeArguments="Thickness" iOS="0,40,0,0" Android="0,20,0,0" WinPhone="0,20,0,0"/>
   </ContentPage.Padding>
@@ -43,16 +43,24 @@
 
       </StackLayout>
 
-      <!--하단 버튼 그리드 뷰 1x1-->
+      <!--하단 버튼 그리드 뷰 1x3-->
       <Grid Grid.Column="0" Grid.Row="2" BackgroundColor="#ff7a00">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="2"/>
+          <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Button Grid.Row="0" Grid.Column="0"
-              x:Name="btnSubmit" Text="Sign Up" FontSize="20" TextColor="#ffffff"
+              x:Name="btnRegister" Text="Sign Up" FontSize="20" TextColor="#ffffff"
               BackgroundColor="Transparent"
       VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180"
-                Clicked="OnBtnSubmitClicked"/>
+                Clicked="OnBtnRegisterClicked"/>
+        <BoxView Grid.Row="0" Grid.Column="1" WidthRequest="1" BackgroundColor="#ffffff"/>
+        <Button Grid.Row="0" Grid.Column="2"
+              x:Name="btnLogin" Text="Login" FontSize="20" TextColor="#FFFFFF"
+              BackgroundColor="Transparent"
+      VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180"
+                Clicked="OnBtnLoginClicked"/>
       </Grid>
     </Grid>
   </ContentPage.Content>

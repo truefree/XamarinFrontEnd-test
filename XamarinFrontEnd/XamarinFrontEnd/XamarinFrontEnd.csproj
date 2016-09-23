@@ -36,11 +36,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="FrontPage.xaml.cs">
-      <DependentUpon>FrontPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\UrlParser.cs" />
+    <Compile Include="Pages\Enroll.xaml.cs">
+      <DependentUpon>Enroll.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MFAChallenge.xaml.cs">
       <DependentUpon>MFAChallenge.xaml</DependentUpon>
     </Compile>
@@ -48,9 +48,8 @@
       <DependentUpon>TopPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Pages\Registration.xaml.cs">
-      <DependentUpon>Registration.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="UserModel.cs" />
+    <Compile Include="ViewModels\MFAViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -83,18 +82,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FrontPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Pages\Registration.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Pages\TopPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
@@ -107,6 +94,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\MFAChallenge.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Enroll.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

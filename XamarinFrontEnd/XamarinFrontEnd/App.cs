@@ -27,7 +27,7 @@ namespace XamarinFrontEnd
                 MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#ea002c"));
             } else
             {
-                MainPage = new NavigationPage(new FrontPage());
+                MainPage = new NavigationPage(new Pages.TopPage());
                 MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.Green);
             }
         }
