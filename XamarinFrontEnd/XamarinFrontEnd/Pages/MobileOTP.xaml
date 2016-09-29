@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamarinFrontEnd.Pages.MFAChallenge">
+             x:Class="XamarinFrontEnd.Pages.MobileOTP">
+
   <ContentPage.Padding>
     <OnPlatform x:TypeArguments="Thickness" iOS="0,40,0,0" Android="0,20,0,0" WinPhone="0,20,0,0"/>
   </ContentPage.Padding>
@@ -13,53 +14,50 @@
         <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
       <Grid.RowDefinitions>
-        <RowDefinition Height="40"/>
         <RowDefinition Height="*"/>
+        <RowDefinition Height="2,*"/>
         <RowDefinition Height="80"/>
       </Grid.RowDefinitions>
 
-      <!-- 로그인 체크 하는 빨간선 -->
-      <!--status bar bgcolor로 대체함-->
-      <!--<BoxView HeightRequest="40" Grid.Row="0" Grid.Column="0" BackgroundColor="#ea002c"/>-->
 
       <!--로그인 창은 Stack Layout-->
-      <StackLayout Grid.Row="1" Grid.Column="0"
+      <StackLayout Grid.Row="0" Grid.Column="0"
                    Orientation="Vertical" Spacing="10"
                    VerticalOptions="FillAndExpand"
         HorizontalOptions="FillAndExpand"
         HeightRequest="150"
         BackgroundColor="#ffffff" >
 
-        <BoxView HeightRequest="80" BackgroundColor="#ffffff"/>
+        <BoxView HeightRequest="30" BackgroundColor="#ffffff"/>
         <Image
           Opacity="1"
           Source="logo.png"
           Aspect="AspectFit" Scale="1" HeightRequest="101" WidthRequest="120"/>
-        <BoxView HeightRequest="40" BackgroundColor="#ffffff"/>
+        <BoxView HeightRequest="10" BackgroundColor="#ffffff"/>
         <StackLayout HorizontalOptions="Center">
-          <Label Text="본인 인증" TextColor="#3366bb"/>
-          <Entry x:Name="txtID" WidthRequest="250" Keyboard="Numeric" PlaceholderColor="#aaaaaa" Placeholder="SMS로 받은 숫자를 입력하세요"  TextColor="#000000"/>
-          <Label x:Name="lblTimer" Text="{Binding RemainSeconds, StringFormat='유효 시간 : {0} 초'}" HorizontalOptions="End"/>
-          <BoxView HeightRequest="20" BackgroundColor="Transparent"/>
-          
-          <Button x:Name="btnRequest" Text="인증 번호 재요청" FontSize="15" TextColor="#3366bb" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center"
-                  Clicked="OnBtnRequestClicked"/>
-        </StackLayout>
-
+          <Label Text="Passcode" TextColor="#3366bb" FontSize="30" HorizontalOptions="Center"/>
+          <Label Text="{Binding Passcode, StringFormat=' {0} '}" TextColor="#ffffff" FontSize="30" HorizontalOptions="Center" BackgroundColor="Gray"/>
+          <ProgressBar x:Name="prgBar" Progress="1"/>
+        </StackLayout>          
       </StackLayout>
 
-      <!--하단 버튼 그리드 뷰 1x1-->
+      <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0">
+        <!--<BoxView HeightRequest="10" BackgroundColor="#ffffff"/>-->
+        <Label Text="Logged In : " TextColor="#666666"/>
+        <Label x:Name="lblLoginID" Text="alias@sk.com" TextColor="#3366bb" FontAttributes="Bold"/>
+      </StackLayout>
+
+      <!--하단 버튼 그리드 뷰 1x3-->
       <Grid Grid.Column="0" Grid.Row="2" BackgroundColor="#ff7a00">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Button Grid.Row="0" Grid.Column="0"
-              x:Name="btnSubmit" Text="Submit" FontSize="20" TextColor="#ffffff"
+              x:Name="btnLogout" Text="Logout" FontSize="20" TextColor="#ffffff"
               BackgroundColor="Transparent"
       VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180"
-                Clicked="OnBtnSubmitClicked"/>
+                Clicked="OnBtnLogoutClicked"/>
       </Grid>
     </Grid>
   </ContentPage.Content>
-  
 </ContentPage>

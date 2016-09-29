@@ -38,7 +38,7 @@
         <BoxView HeightRequest="40" BackgroundColor="#ffffff"/>
         <StackLayout HorizontalOptions="Center">
           <Label Text="Email Address" TextColor="#3366bb"/>
-          <Entry x:Name="txtID" WidthRequest="250" PlaceholderColor="#aaaaaa" Placeholder="alias@sk.com"/>
+          <Entry x:Name="txtID" WidthRequest="250" PlaceholderColor="#aaaaaa" Placeholder="alias@sk.com" TextColor="#000000"/>
         </StackLayout>
 
       </StackLayout>

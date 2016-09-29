@@ -60,7 +60,7 @@ namespace XamarinFrontEnd.Pages
                     using(var content = new ByteArrayContent(byteData))
                     {
                         content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                        response = await client.PostAsync("http://localhost:5841/api/users/", content);
+                        response = await client.PostAsync(Helpers.Settings.ServerURL, content);
 
                         //response.
                         if(response.StatusCode == System.Net.HttpStatusCode.ServiceUnavailable
@@ -136,25 +136,34 @@ namespace XamarinFrontEnd.Pages
                     HttpResponseMessage response;
                     //System.Net.HttpWebResponse n = new System.Net.HttpWebResponse();
                     //n.
-                    response = await client.GetAsync("http://localhost:5841/api/users/" + loginID);
+                    response = await client.GetAsync(Helpers.Settings.ServerURL + loginID);
 
                     if(response.StatusCode == System.Net.HttpStatusCode.NotFound)
                     {
-                        await DisplayAlert("미등록 사용자", "Registarion 먼저 하세요.", "OK");
+                        await DisplayAlert("미등록 사용자", "등록 먼저 하세요.", "OK");
                     }
                     else if(response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-                        string res = string.Empty;
-                        res = await response.Content.ReadAsStringAsync();
-                        UserModel u = JsonConvert.DeserializeObject<UserModel>(res);
-                        if (u.IsEnrolled == false || u.IsEnrollCompleted == false)
-                        {
-                            // 아직 완료 안된 놈들..
-                            // enroll page로!
-                        } else
-                        {
-                            // 완료되었으니 login page로!
-                        }
+                        UserModel u = JsonConvert.DeserializeObject<UserModel>(await response.Content.ReadAsStringAsync());
+                        Helpers.Settings.OTPID = u.OTPKey;
+                        #region TO DO : Enroll or Login Process - 잠시 주석 ㅋㅋ
+                        //if (u.IsEnrolled == false || u.IsEnrollCompleted == false)
+                        //{
+                        //    // 아직 완료 안된 놈들..
+                        //    // enroll page로!
+                        //} else
+                        //{
+                        //    // 완료되었으니 login page로!
+                        //}
+                        #endregion
+
+                        await DisplayAlert("했다 치고..", "음성 인식은 아직..", "OK");
+
+                        App.IsUserLoggedIn = true;
+                        NavigationPage page = new NavigationPage(new Pages.MobileOTP());
+                        App.Current.MainPage = page;
+                        page.SetValue(NavigationPage.BarBackgroundColorProperty, Color.Green);
+                        await Navigation.PopToRootAsync();   
                     }
                 }
                 catch(Exception ex)

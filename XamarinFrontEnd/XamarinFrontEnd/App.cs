@@ -21,15 +21,18 @@ namespace XamarinFrontEnd
             Helpers.Settings.IsUserEnrolled = false;
             Helpers.Settings.OTPID = string.Empty;
 
-            if(!IsUserLoggedIn)
-            {
-                MainPage = new NavigationPage(new Pages.TopPage());
-                MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#ea002c"));
-            } else
-            {
-                MainPage = new NavigationPage(new Pages.TopPage());
-                MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.Green);
-            }
+            MainPage = new NavigationPage(new Pages.TopPage());
+            MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#ea002c"));
+
+            //if(!IsUserLoggedIn)
+            //{
+            //    MainPage = new NavigationPage(new Pages.TopPage());
+            //    MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#ea002c"));
+            //} else
+            //{
+            //    MainPage = new NavigationPage(new Pages.TopPage());
+            //    MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.Green);
+            //}
         }
 
         protected override void OnStart()

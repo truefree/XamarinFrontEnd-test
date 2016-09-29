@@ -20,6 +20,8 @@ namespace XamarinFrontEnd.Helpers
         }
 
         #region Setting Constants
+        private const string ServerKey = "servers";
+        private static readonly string ServerKeyDefault = "http://localhost:5845/api/users/";
 
         private const string SettingsKey = "settings_key";
         private static readonly string SettingsDefault = string.Empty;
@@ -37,6 +39,14 @@ namespace XamarinFrontEnd.Helpers
         private static readonly bool IsUserEnrolledDefault = false;
 
         #endregion
+
+        public static string ServerURL
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault<string>(ServerKey, ServerKeyDefault);
+            }
+        }
 
         public static string OTPID
         {

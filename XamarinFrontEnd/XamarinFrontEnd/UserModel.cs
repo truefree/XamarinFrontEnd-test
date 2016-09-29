@@ -16,5 +16,6 @@ namespace XamarinFrontEnd
         public string profileID { get; set; }
         public bool IsEnrolled { get; set; }
         public bool IsEnrollCompleted { get; set; }
+        public string OTPKey { get; set; }
     }
 }

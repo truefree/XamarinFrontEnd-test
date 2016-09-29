@@ -26,7 +26,7 @@ namespace XamarinFrontEnd.Pages
             this.txtID.TextChanged += (sender, args) =>
             {
                 string _text = txtID.Text;      //Get Current Text
-                if(_text.Length > 5)       //If it is more than your character restriction
+                if(_text.Length > 6)       //If it is more than your character restriction
                 {
                     _text = _text.Remove(_text.Length - 1);  // Remove Last character
                     txtID.Text = _text;        //Set the Old value
@@ -79,7 +79,7 @@ namespace XamarinFrontEnd.Pages
             using(var content = new ByteArrayContent(byteData))
             {
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                response = await client.GetAsync("http://localhost:5841/api/users/" + Helpers.Settings.InternalID + "/mfa?loginID=" + Helpers.Settings.UserEmail);
+                response = await client.GetAsync(Helpers.Settings.ServerURL + Helpers.Settings.InternalID + "/mfa?loginID=" + Helpers.Settings.UserEmail);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -139,7 +139,7 @@ namespace XamarinFrontEnd.Pages
                     using(var content = new ByteArrayContent(byteData))
                     {
                         content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                        response = await client.PostAsync("http://localhost:5841/api/users/" + internalID + "/mfa?code=" + MFAToken, content);
+                        response = await client.PostAsync(Helpers.Settings.ServerURL + internalID + "/mfa?code=" + MFAToken, content);
 
                         if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
                         {
